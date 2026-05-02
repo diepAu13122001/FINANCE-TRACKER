@@ -2,7 +2,7 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-🌐 **Demo:** [finance-tracker.vercel.app](https://finance-tracker-gxdy99t2b-diepau13122001s-projects.vercel.app)  
+🌐 **Demo:** [finance-tracker.vercel.app](https://finance-tracker-fe-rho.vercel.app/)  
 📹 **Video demo:** [YouTube](https://youtube.com/...)
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
