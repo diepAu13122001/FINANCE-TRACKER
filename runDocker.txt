@@ -1,0 +1,21 @@
+Test local:
+# Build và chạy tất cả services
+docker-compose up --build
+
+# Chạy nền (detached mode)
+docker-compose up --build -d
+
+# Xem logs
+docker-compose logs -f backend
+docker-compose logs -f frontend
+
+# Dừng tất cả
+docker-compose down
+
+# Dừng và xóa volumes (reset database -> mất hết dữ liệu test)
+docker-compose down -v
+
+Kiểm tra:
+http://localhost    → Frontend React app
+http://localhost:8081/actuator/health → {"status":"UP"}
+http://localhost:8081/api/auth/login  → Backend API
