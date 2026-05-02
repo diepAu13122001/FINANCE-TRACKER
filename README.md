@@ -169,6 +169,11 @@ Frontend: `<PlanGate requires="PLUS">` component + `usePlan()` hook
 
 ---
 
+[![Backend CI](https://github.com/yourusername/finance-tracker-be/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/finance-tracker-be/actions/workflows/ci.yml)
+
+[![Frontend CI](https://github.com/yourusername/finance-tracker-fe/actions/workflows/ci-frontend.yml/badge.svg)](https://github.com/yourusername/finance-tracker-fe/actions/workflows/ci-frontend.yml)
+
+
 ## 👨‍💻 Tác Giả
 
 **Diệp Âu** — [GitHub](https://github.com/diepau13122001)

@@ -1,0 +1,13 @@
+# Database — copy từ Railway PostgreSQL service
+SPRING_DATASOURCE_URL=jdbc:postgresql://host:port/dbname
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=xxxxx
+
+# JWT
+APP_JWT_SECRET=your-production-secret-min-32-chars
+
+# CORS
+APP_CORS_ORIGINS=https://your-app.vercel.app
+
+# Profile
+SPRING_PROFILES_ACTIVE=prod

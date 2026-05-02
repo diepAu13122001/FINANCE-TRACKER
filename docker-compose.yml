@@ -1,4 +1,4 @@
-# version: '3.9'
+version: '3.9'
 
 services:
 
@@ -16,7 +16,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       # Chỉ expose local để debug — production không cần
-      - "5432:5432"
+      - "5433:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ft_user -d finance_tracker"]
       interval: 10s
