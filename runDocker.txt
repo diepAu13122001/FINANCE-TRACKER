@@ -17,5 +17,7 @@ docker-compose down -v
 
 Kiểm tra:
 http://localhost    → Frontend React app
-http://localhost:8081/actuator/health → {"status":"UP"}
-http://localhost:8081/api/auth/login  → Backend API
+http://localhost:8080/actuator/health → {"status":"UP"}
+http://localhost:8080/api/auth/login  → Backend API
+http://localhost:8080/swagger-ui/index.html/ → Swagger API
+https://finance-tracker-be.up.railway.app/swagger-ui/index.html/

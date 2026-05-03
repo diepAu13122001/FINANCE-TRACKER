@@ -1,179 +1,183 @@
-# React + TypeScript + Vite
+# 💰 Finance Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ứng dụng quản lý tài chính cá nhân với hệ thống 3 gói (Free/Plus/Premium),
+xây dựng cho thị trường Việt Nam.
 
-🌐 **Demo:** [finance-tracker.vercel.app](https://finance-tracker-fe-rho.vercel.app/)  
-📹 **Video demo:** [YouTube](https://youtube.com/...)
+- [![Backend CI]](https://github.com/diepAu13122001/finance-tracker-be/blob/main/.github/workflows/ci-frontend.yml)
+- [![Frontend CI]](https://github.com/diepAu13122001/finance-tracker-fe/blob/main/.github/workflows/ci-frontend.yml)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🌐 **Live Demo:** [finance-tracker.vercel.app](https://finance-tracker-fe-rho.vercel.app)
+- 📹 **Demo Video:** [YouTube](https://youtube.com/watch?v=...)
+- 📚 **API Docs:** [Swagger UI](https://finance-tracker-be.up.railway.app/swagger-ui/index.html/)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Tính Năng V1
 
-## Expanding the ESLint configuration
+| Tính năng        | Free | Plus     | Premium |
+| ---------------- | ---- | -------- | ------- |
+| Giao dịch/tháng  | 50   | ∞        | ∞       |
+| Biểu đồ cơ bản   | ✅   | ✅       | ✅      |
+| Filter giao dịch | ✅   | ✅       | ✅      |
+| Danh mục         | ❌   | ✅       | ✅      |
+| AI Assistant     | ❌   | 20/tháng | ∞       |
+| Đồ dùng gia đình | ❌   | ❌       | ✅      |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠 Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Backend:** Spring Boot 3.3 · Java 21 · PostgreSQL 16 · Flyway · Spring Security · JWT
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**Frontend:** React 18 · TypeScript · Vite · TailwindCSS · TanStack Query · Zustand · Recharts
+
+**DevOps:** Docker · Railway · Vercel · GitHub Actions
+
+---
+
+## 🏗 Kiến Trúc
+
+```
+┌─────────────────┐         ┌──────────────────┐         ┌────────────────┐
+│  React Frontend │ ──────> │  Spring Boot API │ ──────> │  PostgreSQL    │
+│  (Vercel)       │  HTTPS  │  (Railway)        │  JDBC   │  (Railway)     │
+│                 │ <────── │                  │ <────── │                │
+└─────────────────┘   JSON  └──────────────────┘         └────────────────┘
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**Plan Gating:**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-```markdown
-users ──────────── user_subscriptions ──── subscription_plans
-  │                                               (FREE/PLUS/PREMIUM)
-  └──── transactions
-  └──── payment_history
-```
+- Backend: `@RequiresPlan("PLUS")` annotation + AOP Aspect
+- Frontend: `<PlanGate requires="PLUS">` component + `usePlan()` hook
 
 ---
 
 ## 🚀 Chạy Local
 
 ### Yêu Cầu
-- Java 21+
-- Node.js 18+
+
+- Java 21+, Maven 3.9+
+- Node.js 20+, npm 10+
 - PostgreSQL 15+
 
 ### Backend
 
 ```bash
-# 1. Clone repo
-git clone https://github.com/yourusername/finance-tracker-be
+git clone https://github.com/diepAu13122001/finance-tracker-be
+cd finance-tracker-be
 
-# 2. Tạo database
+# Tạo database
 psql -U postgres -c "CREATE DATABASE finance_tracker;"
 psql -U postgres -c "CREATE USER ft_user WITH PASSWORD 'ft_password';"
 psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE finance_tracker TO ft_user;"
+psql -U postgres -c "GRANT ALL ON SCHEMA public TO ft_user;"
 
-# 3. Cấu hình application.yml
-cp src/main/resources/application.yml.example src/main/resources/application.yml
-# Điền thông tin database và JWT secret
+# Config
+cp src/main/resources/application-local.yml.example \
+   src/main/resources/application-local.yml
 
-# 4. Chạy — Flyway tự migrate schema
-./mvnw spring-boot:run
-# API chạy tại http://localhost:8080
+# Chạy (profile local)
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+# → http://localhost:8080/swagger-ui.html
 ```
 
 ### Frontend
 
 ```bash
-# 1. Clone repo
-git clone https://github.com/yourusername/finance-tracker-fe
-
-# 2. Cài dependencies
+git clone https://github.com/diepAu13122001/finance-tracker-fe
+cd finance-tracker-fe
 npm install
 
-# 3. Cấu hình env
 cp .env.example .env
 # VITE_API_URL=http://localhost:8080
 
-# 4. Chạy dev server
 npm run dev
-# App chạy tại http://localhost:5173
+# → http://localhost:5173
+```
+
+---
+
+## 🧪 Tests
+
+```bash
+# Backend
+./mvnw test
+
+# Frontend
+npm run test:run
+
+# Coverage
+npm run coverage
 ```
 
 ---
 
 ## 📡 API Endpoints
 
-### Auth
 ```
-POST /api/auth/register   Đăng ký
-POST /api/auth/login      Đăng nhập
-```
-
-### Transactions
-```
-GET    /api/transactions              Danh sách (phân trang, filter)
-POST   /api/transactions              Tạo mới
-PUT    /api/transactions/:id          Cập nhật
-DELETE /api/transactions/:id          Xóa
-GET    /api/transactions/summary      Tổng hợp theo kỳ
-GET    /api/transactions/chart/daily  Biểu đồ ngày
-GET    /api/transactions/chart/monthly Biểu đồ tháng
-```
-
-### Users
-```
-GET /api/users/me          Thông tin cá nhân
-PUT /api/users/me          Cập nhật hồ sơ
-PUT /api/users/me/password Đổi mật khẩu
+Auth:         POST /api/auth/register · /api/auth/login
+Transactions: GET/POST /api/transactions
+              PUT/DELETE /api/transactions/:id
+              GET /api/transactions/summary
+              GET /api/transactions/chart/daily
+              GET /api/transactions/chart/monthly
+Users:        GET/PUT /api/users/me
+              PUT /api/users/me/password
+Health:       GET /actuator/health
 ```
 
 ---
 
-## 🔒 Hệ Thống Phân Quyền
+## 🔐 Bảo Mật
 
-```
-FREE    → 50 giao dịch/tháng, biểu đồ cơ bản
-PLUS    → Không giới hạn, danh mục, AI 20 tin/tháng
-PREMIUM → Tất cả Plus + AI không giới hạn + đồ dùng gia đình
-```
-
-Backend: `@RequiresPlan("PLUS")` annotation + AOP aspect  
-Frontend: `<PlanGate requires="PLUS">` component + `usePlan()` hook
+- JWT RS256, access token 15 phút
+- BCrypt password hashing (cost 12)
+- Ownership check: user chỉ access data của mình
+- Rate limiting qua plan system
+- CORS configured cho production domains
 
 ---
 
-[![Backend CI](https://github.com/yourusername/finance-tracker-be/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/finance-tracker-be/actions/workflows/ci.yml)
+## 📁 Cấu Trúc Project
 
-[![Frontend CI](https://github.com/yourusername/finance-tracker-fe/actions/workflows/ci-frontend.yml/badge.svg)](https://github.com/yourusername/finance-tracker-fe/actions/workflows/ci-frontend.yml)
+```
+Backend (Spring Boot):
+├── controller/     REST API endpoints
+├── service/        Business logic
+├── repository/     Database queries (Spring Data JPA)
+├── entity/         JPA entities
+├── dto/            Request/Response DTOs
+├── security/       JWT filter, Security config
+├── aspect/         AOP: @RequiresPlan gating
+├── exception/      Global exception handler
+└── config/         CORS, Swagger, Cache
 
+Frontend (React):
+├── components/
+│   ├── shared/     Button, Input, Card, PlanGate...
+│   ├── layout/     AppLayout, Sidebar, TopBar...
+│   ├── transactions/ TransactionList, Modal, Filters...
+│   ├── dashboard/  SummaryCards
+│   └── charts/     DailyBarChart, MonthlyTrendChart
+├── pages/          Dashboard, Expenses, Analytics...
+├── hooks/          usePlan, useTransactions, useCharts
+├── stores/         authStore (Zustand)
+├── services/       API calls (Axios)
+└── utils/          formatVND, parseVNDInput...
+```
+
+---
+
+## 🗺 Roadmap
+
+- **V1** ✅ Core app + Auth + Transactions + Charts
+- **V2** 🚧 AI Features + Categories + Goals + PayOS
+- **V3** 📋 Household Tracker + Premium Features
+
+---
 
 ## 👨‍💻 Tác Giả
 
-**Diệp Âu** — [GitHub](https://github.com/diepau13122001)
+**Diệp Âu**
+[GitHub](https://github.com/diepau13122001) ·
+[Email](mailto:diepau1312@gmail.com)
