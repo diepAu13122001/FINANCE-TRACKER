@@ -8,7 +8,7 @@ xây dựng cho thị trường Việt Nam.
 
 - 🌐 **Live Demo:** [finance-tracker.vercel.app](https://finance-tracker-fe-rho.vercel.app)
 - 📹 **Demo Video:** [YouTube](https://youtu.be/Q93rZEAsXcY)
-- 📚 **API Docs:** [Swagger UI](https://finance-tracker-be.up.railway.app/swagger-ui/index.html/)
+- 📚 **API Docs:** [Swagger UI](https://finance-tracker-be.up.railway.app/swagger-ui.html)
 
 ---
 
