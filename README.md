@@ -7,7 +7,7 @@ xây dựng cho thị trường Việt Nam.
 - [![Frontend CI]](https://github.com/diepAu13122001/finance-tracker-fe/blob/main/.github/workflows/ci-frontend.yml)
 
 - 🌐 **Live Demo:** [finance-tracker.vercel.app](https://finance-tracker-fe-rho.vercel.app)
-- 📹 **Demo Video:** [YouTube](https://youtube.com/watch?v=...)
+- 📹 **Demo Video:** [YouTube](https://youtu.be/Q93rZEAsXcY)
 - 📚 **API Docs:** [Swagger UI](https://finance-tracker-be.up.railway.app/swagger-ui/index.html/)
 
 ---
