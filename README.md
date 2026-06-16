@@ -3,6 +3,8 @@ Monorepo chứa toàn bộ source code của Finance Tracker SaaS.
 
 > Ứng dụng quản lý tài chính cá nhân với hệ thống 3 gói (Free/Plus/Premium), xây dựng cho thị trường Việt Nam.
 
+https://github.com/user-attachments/assets/a385cb65-e783-4e06-9673-35de3bf58e62
+
 - [![Backend CI]](https://github.com/diepAu13122001/finance-tracker-be/blob/main/.github/workflows/ci.yml)
 - [![Frontend CI]](https://github.com/diepAu13122001/finance-tracker-fe/blob/main/.github/workflows/ci-frontend.yml)
 
