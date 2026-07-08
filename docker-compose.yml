@@ -54,7 +54,7 @@ services:
       context: ./finance-tracker-fe # đường dẫn đến folder frontend
       dockerfile: Dockerfile
       args:
-        VITE_API_URL: ${VITE_API_URL:-http://localhost:8081}
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8080}
     container_name: ft_frontend
     restart: unless-stopped
     depends_on:
